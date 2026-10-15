@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Enneagram Discovery Assessment</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div class="enneagram-container">
+  <div id="enneagramWelcome" class="enneagram-card">
+    <h1 class="enneagram-title">Enneagram Discovery Assessment</h1>
+    <p class="enneagram-subtitle">This assessment will help guide you in discovering your most probable type.</p>
+    <p class="enneagram-note">
+      Please note: no Enneagram assessment is perfect. Each one can only be as accurate as your self-understanding, so your result may not match your true type, and that's okay. To get to the bottom of your main type, schedule your Free Discovery Call to review your results.
+    </p>
+    <div class="enneagram-button-row">
+      <button type="button" id="enneagramStart" class="enneagram-button">Start Assessment</button>
+    </div>
+  </div>
+
+  <div id="enneagramAssessment" class="enneagram-hidden">
+    <div class="enneagram-progress"><div id="enneagramProgressBar" class="enneagram-progress-bar"></div></div>
+    <div class="enneagram-progress-text" id="progressText" aria-live="polite">0 of 72 completed</div>
+
+    <div class="enneagram-card" style="margin-top: 20px;">
+      <h2 class="enneagram-title">Enneagram Discovery Questionnaire</h2>
+      <p class="enneagram-subtitle">For each statement, indicate how much you agree or disagree based on your general life patterns. Trust your first instinct.</p>
+      <form id="enneagramForm"></form>
+      <div id="enneagramValidation" class="enneagram-error enneagram-hidden" role="alert"></div>
+      <div class="enneagram-button-row">
+        <button type="button" id="enneagramCalculate" class="enneagram-button">Get My Results</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="enneagramResults" class="enneagram-hidden">
+    <div class="enneagram-card">
+      <h2 class="enneagram-title">Discovery Assessment Results</h2>
+      <div id="resultsContent"></div>
+      <div class="no-print">
+        <button type="button" id="enneagramPrint" class="enneagram-button print">Save / Print Results</button>
+        <button type="button" id="enneagramRetake" class="enneagram-button secondary">Take Again</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="questions.js"></script>
+<script src="type-descriptions.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
