@@ -1,7 +1,8 @@
 (function () {
   // ---------- Settings ----------
-  // Paste your scheduling link here (Calendly, Patreon, etc.). Leave blank to hide the button.
-  const DISCOVERY_CALL_URL = '';
+  // Paste your Patreon link here. Leave blank to show the message without a button.
+  const PATREON_URL = '';
+  const PATREON_BUTTON_TEXT = 'Go to The Decode Theory on Patreon';
 
   const TOTAL_TYPES = 9;
   const MAX_RATING = 5;
@@ -283,11 +284,11 @@
       `<div class="results-chip">#${i + 1}: ${escapeHtml(typeLabel(m.type))} • ${toPercent(m.type, m.score)}%</div>`
     ).join('');
 
-    const cta = DISCOVERY_CALL_URL ? `
+    const cta = `
       <div class="results-cta">
-        <p>Want to confirm your type? Review these results with me on a Free Discovery Call.</p>
-        <a class="enneagram-button cta" href="${escapeHtml(DISCOVERY_CALL_URL)}" target="_blank" rel="noopener">Schedule your Free Discovery Call</a>
-      </div>` : '';
+        <p>Now that you know your most probable type, the next step is to watch the introduction video for The Decode Theory if you haven't already, and then select your Type's specific course. See you on the other side!</p>
+        ${PATREON_URL ? `<a class="enneagram-button cta" href="${escapeHtml(PATREON_URL)}" target="_blank" rel="noopener">${escapeHtml(PATREON_BUTTON_TEXT)}</a>` : ''}
+      </div>`;
 
     ui.resultsContent.innerHTML = `
       <div class="results-primary-card">
