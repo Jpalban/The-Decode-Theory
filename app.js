@@ -337,6 +337,103 @@
     ui.assessmentScreen.classList.add('enneagram-hidden');
     ui.resultsScreen.classList.remove('enneagram-hidden');
     window.scrollTo({ top: 0, behavior: 'smooth' });
+    launchConfetti();
+  }
+
+  // ---------- Confetti ----------
+  let confettiRunning = false;
+
+  function launchConfetti() {
+    if (confettiRunning) return;
+    // Respect people who have asked their device to reduce motion.
+    if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    confettiRunning = true;
+
+    const canvas = document.createElement('canvas');
+    canvas.setAttribute('aria-hidden', 'true');
+    canvas.style.cssText = 'position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:2000;';
+    document.body.appendChild(canvas);
+    const ctx = canvas.getContext('2d');
+    const dpr = Math.min(window.devicePixelRatio || 1, 2);
+    let w = 0;
+    let h = 0;
+
+    function resize() {
+      w = window.innerWidth;
+      h = window.innerHeight;
+      canvas.width = Math.round(w * dpr);
+      canvas.height = Math.round(h * dpr);
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    }
+    resize();
+    window.addEventListener('resize', resize);
+
+    const colors = ['#2563EB', '#1E3A8A', '#60A5FA', '#F59E0B', '#EC4899', '#10B981', '#8B5CF6'];
+    const count = w < 600 ? 90 : 170;
+    const pieces = Array.from({ length: count }, () => ({
+      x: Math.random() * w,
+      y: -20 - Math.random() * h * 0.6,       // start above the screen, staggered
+      size: 6 + Math.random() * 7,
+      vy: 2 + Math.random() * 3,              // fall speed (px per 1/60s)
+      sway: Math.random() * 2 * Math.PI,
+      swaySpeed: 0.03 + Math.random() * 0.05,
+      drift: (Math.random() - 0.5) * 1.2,
+      angle: Math.random() * 2 * Math.PI,
+      spin: (Math.random() - 0.5) * 0.3,
+      color: colors[Math.floor(Math.random() * colors.length)],
+      round: Math.random() < 0.25
+    }));
+
+    const MAX_MS = 7000;
+    const FADE_MS = 1200;
+    let start = null;
+    let last = null;
+
+    function finish() {
+      window.removeEventListener('resize', resize);
+      if (canvas.parentNode) canvas.parentNode.removeChild(canvas);
+      confettiRunning = false;
+    }
+
+    function frame(now) {
+      if (start === null) { start = now; last = now; }
+      const elapsed = now - start;
+      const dt = Math.min((now - last) / 16.667, 3); // keeps speed steady on 60Hz and 120Hz screens
+      last = now;
+
+      ctx.clearRect(0, 0, w, h);
+      ctx.globalAlpha = elapsed > MAX_MS - FADE_MS ? Math.max(0, (MAX_MS - elapsed) / FADE_MS) : 1;
+
+      let stillFalling = false;
+      pieces.forEach(p => {
+        p.y += p.vy * dt;
+        p.sway += p.swaySpeed * dt;
+        p.x += (p.drift + Math.sin(p.sway) * 0.8) * dt;
+        p.angle += p.spin * dt;
+        if (p.y < h + 20) stillFalling = true;
+        if (p.y > -20 && p.y < h + 20) {
+          ctx.save();
+          ctx.translate(p.x, p.y);
+          ctx.rotate(p.angle);
+          ctx.fillStyle = p.color;
+          if (p.round) {
+            ctx.beginPath();
+            ctx.arc(0, 0, p.size / 2, 0, 2 * Math.PI);
+            ctx.fill();
+          } else {
+            ctx.fillRect(-p.size / 2, -p.size / 4, p.size, p.size / 2);
+          }
+          ctx.restore();
+        }
+      });
+
+      if (stillFalling && elapsed < MAX_MS) {
+        requestAnimationFrame(frame);
+      } else {
+        finish();
+      }
+    }
+    requestAnimationFrame(frame);
   }
 
   // ---------- Navigation ----------
