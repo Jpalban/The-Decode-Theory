@@ -446,7 +446,7 @@ body {
 
 @media print {
   body { background: #fff; padding: 0; }
-  .no-print, .results-cta, .next-steps { display: none !important; }
+  .no-print, .results-cta, .next-steps-group { display: none !important; }
   .enneagram-card { box-shadow: none; border: none; }
   .results-primary-card,
   .enneagram-score-fill {
@@ -474,36 +474,28 @@ body {
   margin: 1.5rem 0 0;
 }
 
+.next-steps-group {
+  margin: 1.25rem 0 1.5rem;
+}
+
 .next-steps {
-  margin: 2rem 0 1rem;
-  padding: 1.5rem;
+  margin: 0 0 1rem;
+  padding: 1.25rem 1.5rem;
   background: #EFF6FF;
   border: 2px solid #2563EB;
   border-radius: 12px;
-}
-
-.next-steps h3 {
-  margin: 0 0 0.75rem;
-  color: #1E3A8A;
-  font-size: 1.4rem;
   text-align: center;
 }
 
-.next-steps p {
-  color: #334155;
-  line-height: 1.7;
-  margin-bottom: 1rem;
+.next-steps h3 {
+  margin: 0 0 0.6rem;
+  color: #1E3A8A;
+  font-size: 1.3rem;
 }
 
-.next-steps ol {
+.next-steps-link {
   margin: 0;
-  padding-left: 1.4rem;
-}
-
-.next-steps li {
-  margin-bottom: 0.75rem;
-  color: #334155;
-  font-size: 1.05rem;
+  font-size: 1.1rem;
   line-height: 1.6;
 }
 

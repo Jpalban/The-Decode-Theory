@@ -291,13 +291,16 @@
       `<div class="results-chip">#${i + 1}: ${escapeHtml(typeLabel(m.type))} • ${toPercent(m.type, m.score)}%</div>`
     ).join('');
 
-    const cta = `
-      <div class="next-steps">
-        <h3>Next Steps!</h3>
-        <ol>
-          <li>${linkOrText(PATREON_URL, 'Click here for your Free Intro Video to The Decode Theory!')}</li>
-          <li>Don't feel this is accurate? ${linkOrText(ASSESSMENT_CALL_URL, 'Schedule your free 15 minute Assessment Call to find your type!')}</li>
-        </ol>
+    const nextStepBoxes = `
+      <div class="next-steps-group">
+        <div class="next-steps">
+          <h3>Ready for the next step?</h3>
+          <p class="next-steps-link">${linkOrText(PATREON_URL, 'Click here for your Free Intro Video to The Decode Theory!')}</p>
+        </div>
+        <div class="next-steps">
+          <h3>Doesn't feel like the correct results?</h3>
+          <p class="next-steps-link">${linkOrText(ASSESSMENT_CALL_URL, 'Click here for your Free Assessment Call to Find your Type!')}</p>
+        </div>
       </div>`;
 
     ui.resultsContent.innerHTML = `
@@ -306,6 +309,8 @@
         <p class="results-primary-subtitle">Your core patterns align most closely with this Enneagram type.</p>
         <div class="results-chip-row">${chips}</div>
       </div>
+
+      ${nextStepBoxes}
 
       <p class="results-welcome">${escapeHtml(typeWelcome)}</p>
 
@@ -323,7 +328,6 @@
         Remember, this is a starting point for self-discovery, not a final label. Your results show your most probable type based on your current self-perception. Explore it with curiosity, and pay close attention to the motivation underneath your behavior.
       </div>
 
-      ${cta}
 
       <div class="results-breakdown">
         <h3>Full Score Breakdown</h3>
