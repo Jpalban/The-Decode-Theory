@@ -1,8 +1,9 @@
 (function () {
   // ---------- Settings ----------
-  // Paste your Patreon link here. Leave blank to show the message without a button.
-  const PATREON_URL = '';
-  const PATREON_BUTTON_TEXT = 'Go to The Decode Theory on Patreon';
+  // Link for step 1 of the Next Steps box (your Patreon page).
+  const PATREON_URL = 'https://www.patreon.com/cw/TheNautilusCompany';
+  // Link for step 2 (your scheduling page). Leave blank to show the text without a link.
+  const ASSESSMENT_CALL_URL = 'https://calendar.google.com/calendar/u/0/appointments/schedules/AcZssZ1Q8WMa4uzJ5sTAofww3etFva5Jb6vTcMZRxZrLmrrdmSxIeHg5iJlc4mOTGQ2Ltbje7PGIafsf';
 
   const TOTAL_TYPES = 9;
   const MAX_RATING = 5;
@@ -242,6 +243,12 @@
     }).join('');
   }
 
+  function linkOrText(url, text) {
+    return url
+      ? `<a href="${escapeHtml(url)}" target="_blank" rel="noopener">${escapeHtml(text)}</a>`
+      : escapeHtml(text);
+  }
+
   function typeLabel(type) {
     const name = typeDescriptions[type].name;
     return name ? `Type ${type}: ${name}` : `Type ${type}`;
@@ -285,9 +292,12 @@
     ).join('');
 
     const cta = `
-      <div class="results-cta">
-        <p>Now that you know your most probable type, the next step is to watch the introduction video for The Decode Theory if you haven't already, and then select your Type's specific course. See you on the other side!</p>
-        ${PATREON_URL ? `<a class="enneagram-button cta" href="${escapeHtml(PATREON_URL)}" target="_blank" rel="noopener">${escapeHtml(PATREON_BUTTON_TEXT)}</a>` : ''}
+      <div class="next-steps">
+        <h3>Next Steps!</h3>
+        <ol>
+          <li>${linkOrText(PATREON_URL, 'Click here for your Free Intro Video to The Decode Theory!')}</li>
+          <li>Don't feel this is accurate? ${linkOrText(ASSESSMENT_CALL_URL, 'Schedule your free 15 minute Assessment Call to find your type!')}</li>
+        </ol>
       </div>`;
 
     ui.resultsContent.innerHTML = `

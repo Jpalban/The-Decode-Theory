@@ -3,16 +3,22 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Enneagram Discovery Assessment</title>
+  <title>Enneagram Assessment to Decode Your Type!</title>
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 <div class="enneagram-container">
   <div id="enneagramWelcome" class="enneagram-card">
-    <h1 class="enneagram-title">Enneagram Discovery Assessment</h1>
-    <p class="enneagram-subtitle">This assessment will help guide you in discovering your most probable type.</p>
+    <h1 class="enneagram-title">Enneagram Assessment to Decode Your Type!</h1>
+    <p class="enneagram-subtitle"><strong>Welcome! I’m glad you’re here.</strong></p>
     <p class="enneagram-note">
-      Please note: no Enneagram assessment is perfect. Each one can only be as accurate as your self-understanding, so your result may not match your true type, and that's okay. To get to the bottom of your main type, schedule your Free Discovery Call to review your results.
+      This assessment is a first step toward understanding what’s happening beneath the surface. It will help you discover your most likely Enneagram type and begin exploring the motivations that shape how you see yourself and experience the world.
+    </p>
+    <p class="enneagram-note">
+      A quick note: no assessment can tell you everything about yourself, and this one isn’t perfect. Your results are a starting point, not the final word. The more you understand yourself, the more helpful this process becomes.
+    </p>
+    <p class="enneagram-note">
+      Once you’ve completed the assessment and have your results, I invite you to schedule a Free Assessment Call with me. We’ll review your results together and explore all the ways the Decode Theory can help you understand what's happening so you can live on purpose!
     </p>
     <div class="enneagram-button-row">
       <button type="button" id="enneagramStart" class="enneagram-button">Start Assessment</button>
@@ -24,7 +30,7 @@
     <div class="enneagram-progress-text" id="progressText" aria-live="polite">0 of 72 completed</div>
 
     <div class="enneagram-card" style="margin-top: 20px;">
-      <h2 class="enneagram-title">Enneagram Discovery Questionnaire</h2>
+      <h2 class="enneagram-title">Enneagram Type Questionnaire</h2>
       <p class="enneagram-subtitle">For each statement, indicate how much you agree or disagree based on your general life patterns. Trust your first instinct.</p>
       <form id="enneagramForm"></form>
       <div id="enneagramValidation" class="enneagram-error enneagram-hidden" role="alert"></div>
@@ -36,7 +42,7 @@
 
   <div id="enneagramResults" class="enneagram-hidden">
     <div class="enneagram-card">
-      <h2 class="enneagram-title">Discovery Assessment Results</h2>
+      <h2 class="enneagram-title">Assessment Results</h2>
       <div id="resultsContent"></div>
       <div class="no-print">
         <button type="button" id="enneagramPrint" class="enneagram-button print">Save / Print Results</button>
